@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kang.dao.ActivityMapper" >
+    <insert id="insertActivity" parameterType="com.kang.pojo.po.ActivityPo">
+        INSERT INTO collect_cards.Activities
+            (activityId, activityTitle, postPic, startTime,
+             createTime, endTime, rules, state,
+             cardName1, cardName2, cardName3, cardName4, cardName5,
+             cardPic1, cardPic2, cardPic3, cardPic4, cardPic5,
+             chance1, chance2, chance3, chance4, chance5)
+        VALUES
+            (#{activityId}, #{activityTitle}, #{postPic}, #{startTime},
+             #{createTime}, #{endTime}, #{rules}, #{state},
+             #{cardName1}, #{cardName2}, #{cardName3}, #{cardName4}, #{cardName5},
+             #{cardPic1}, #{cardPic2}, #{cardPic3}, #{cardPic4}, #{cardPic5},
+             #{chance1}, #{chance2}, #{chance3}, #{chance4}, #{chance5})
+    </insert>
+
+    <update id="updateActivity" parameterType="com.kang.pojo.po.ActivityPo">
+        update collect_cards.Activities
+        set  activityTitle=#{activityTitle}, postPic=#{postPic}, startTime=#{startTime},
+             createTime=#{createTime}, endTime=#{endTime}, rules=#{rules}, state=#{state},
+             cardName1=#{cardName1}, cardName2=#{cardName2}, cardName3=#{cardName3}, cardName4=#{cardName4}, cardName5=#{cardName5},
+             cardPic1=#{cardPic1}, cardPic2=#{cardPic2}, cardPic3=#{cardPic3}, cardPic4=#{cardPic4}, cardPic5=#{cardPic5},
+             chance1=#{chance1}, chance2=#{chance2}, chance3=#{chance3}, chance4=#{chance4}, chance5=#{chance5}
+        where activityId=#{activityId}
+    </update>
+
+    <select id="queryActivityByTitle" parameterType="String" resultType="com.kang.pojo.po.ActivityPo">
+        select * from collect_cards.activities
+        where activityTitle=#{activityTitle}
+    </select>
+
+    <select id="queryActivityById" parameterType="String" resultType="com.kang.pojo.po.ActivityPo">
+        select * from collect_cards.activities
+        where activityId=#{activityId}
+    </select>
+
+    <select id="queryAllActivities" resultType="com.kang.pojo.po.ActivityPo">
+        select * from collect_cards.activities
+        ORDER BY createTime desc
+    </select>
+
+    <select id="queryAllUpActivities" resultType="com.kang.pojo.po.ActivityPo">
+        select * from collect_cards.activities
+        where state=1
+        ORDER BY createTime desc
+    </select>
+</mapper>

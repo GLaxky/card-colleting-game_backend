@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <package name="com.kang.pojo"/>
+    </typeAliases>
+
+    <mappers>
+        <mapper class="com.kang.dao.UserMapper"/>
+        <mapper class="com.kang.dao.UserTypeMapper"/>
+        <mapper class="com.kang.dao.ActivityMapper"/>
+        <mapper class="com.kang.dao.InvolvementMapper"/>
+        <mapper class="com.kang.dao.ScratchMapper"/>
+        <mapper class="com.kang.dao.SharingMapper"/>
+        <mapper class="com.kang.dao.AssistanceMapper"/>
+    </mappers>
+</configuration>

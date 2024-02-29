@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kang.dao.InvolvementMapper" >
+    <insert id="insertInvolvement" parameterType="com.kang.pojo.po.InvolvementPo">
+        INSERT INTO collect_cards.involvements
+            (involvementId, userId, activityId, involvementTime)
+        VALUES
+            (#{involvementId}, #{userId}, #{activityId}, #{involvementTime})
+    </insert>
+
+    <select id="queryInvolvementByUserIdAndActivityId" resultType="com.kang.pojo.po.InvolvementPo">
+        SELECT * FROM collect_cards.involvements
+        WHERE userId=#{userId} AND activityId=#{activityId}
+    </select>
+
+    <select id="queryActivitiesByUserId" parameterType="String" resultType="com.kang.pojo.po.ActivityPo">
+        SELECT * FROM collect_cards.activities
+        WHERE activityId in (
+            SELECT i.activityId
+            FROM collect_cards.involvements i
+            WHERE i.userId=#{userId}
+        )
+        ORDER BY endTime desc
+    </select>
+
+    <select id="queryInvolvementByInvolvementId" parameterType="String" resultType="com.kang.pojo.po.InvolvementPo">
+        SELECT * FROM collect_cards.involvements
+        WHERE involvementId=#{involvementId}
+    </select>
+
+    <select id="queryInvolvementByActivityId" parameterType="String" resultType="com.kang.pojo.po.InvolvementPo">
+        SELECT * FROM collect_cards.involvements
+        WHERE activityId=#{activityId}
+    </select>
+</mapper>

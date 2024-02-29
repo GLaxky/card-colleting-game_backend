@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kang.dao.SharingMapper" >
+    <insert id="insertSharingEvent" parameterType="com.kang.pojo.po.SharingEventPo">
+        INSERT INTO collect_cards.sharingevents
+            (sharingEventId, involvementId, SharingTime, sharingUrl)
+        VALUES
+            (#{sharingEventId}, #{involvementId}, #{SharingTime}, #{sharingUrl})
+    </insert>
+    <select id="querySharingEvent" parameterType="String" resultType="com.kang.pojo.po.SharingEventPo">
+        SELECT * FROM collect_cards.sharingevents
+        WHERE involvementId=#{involvementId}
+    </select>
+</mapper>

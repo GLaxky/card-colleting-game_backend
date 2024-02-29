@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kang.dao.UserMapper" >
+    <insert id="insertAUser" parameterType="UserPo">
+        insert into collect_cards.Users (userId, telephone, nickName, sex, userTypeId, createTime, userName, password)
+        values (#{userId}, #{telephone}, #{nickName}, #{sex}, #{userTypeId}, #{createTime}, #{userName}, #{password});
+    </insert>
+    <update id="updateAUser" parameterType="UserPo">
+        update collect_cards.Users
+        set telephone=#{telephone}, nickName=#{nickName}, sex=#{sex}, password=#{password}
+        where userId=#{userId};
+    </update>
+    <select id="queryAUserByUserId" parameterType="String" resultType="UserPo">
+        select * from collect_cards.Users
+        where userId = #{userId};
+    </select>
+    <select id="queryAUserByUserName" parameterType="String" resultType="UserPo">
+        select * from collect_cards.Users users
+            join collect_cards.UserTypes u on users.userTypeId = u.userTypeId
+        where userName = #{userName};
+    </select>
+    <delete id="deleteAUser" parameterType="String">
+        delete from collect_cards.Users
+        where userId=#{userId};
+    </delete>
+</mapper>
